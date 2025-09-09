@@ -6,34 +6,44 @@ using System.Threading.Tasks;
 
 namespace WordReverser {
     internal class WordManipulator {
-        public static string ReverseWords(string input) {
+        public static string ReverseWords(string input)
+        {
             string word = "";
             List<string> ReverseOrder = [];
             List<string> words = [];
 
-            for(int i = 0; i < input.Count(); i++) {
-                
-                if(char.IsLetter(input[i])) { 
+            for (int i = 0; i < input.Count(); i++)
+            {
+                if (input[i] != ' ')
+                {
                     word = word + input[i];
                 }
-                else { 
+                else
+                {
                     words.Add(word);
                     word = "";
-                }    
+                }
             }
+            words.Add(word);
 
 
             List<string> reverseWordOrder = [];
 
-            for(int i = words.Count(); i > 0; i--) {
-                if(!string.IsNullOrWhiteSpace(words[i-1])) {
-                    reverseWordOrder.Add(words[i-1]);
+            for (int i = words.Count(); i > 0; i--)
+            {
+                if (!string.IsNullOrWhiteSpace(words[i - 1]))
+                {
+                    reverseWordOrder.Add(words[i - 1]);
                 }
             }
 
             string Results = "";
 
-            for(int i = 0; i < reverseWordOrder.Count(); i++) {
+            if (reverseWordOrder.Count() == 0)
+                return Results;
+
+            for (int i = 0; i < reverseWordOrder.Count(); i++)
+            {
                 Results = Results + reverseWordOrder[i] + " ";
             }
 
